@@ -652,52 +652,131 @@ window.addEventListener('load', handleMobileLogo);
 window.addEventListener('resize', handleMobileLogo);
 handleMobileLogo();
 
-// Performance detection for Android devices
+// Advanced refresh rate optimization for Android
 (function() {
-  // Detect Android (any version including 14,15,16)
   const isAndroid = /Android/i.test(navigator.userAgent);
-  const isSmallScreen = window.innerWidth <= 768;
   
-  // Check CPU cores (4 or less = budget device)
-  const isLowEnd = navigator.hardwareConcurrency ? navigator.hardwareConcurrency <= 4 : false;
-  
-  // Quick FPS test (runs for 1 second)
-  let lowFPS = false;
-  let frameCount = 0;
-  let lastTime = performance.now();
-  
-  function measureFPS() {
-    frameCount++;
-    const now = performance.now();
-    const delta = now - lastTime;
+  if (isAndroid) {
+    // Detect approximate refresh rate by measuring frame timing
+    let estimatedRefreshRate = 60; // default
+    let frameTimings = [];
+    let lastTimestamp = performance.now();
+    let frames = 0;
     
-    if (delta >= 1000) {
-      const fps = Math.round((frameCount * 1000) / delta);
-      if (fps < 45) lowFPS = true; // below 45 FPS = choppy
-      frameCount = 0;
-      lastTime = now;
-    }
-    
-    if (!lowFPS) requestAnimationFrame(measureFPS);
-  }
-  
-  requestAnimationFrame(measureFPS);
-  
-  // After 1.5 seconds, decide and apply low-perf class if needed
-  setTimeout(() => {
-    // Apply low-perf for Android OR small screen OR low cores OR low FPS
-    if (isAndroid || isSmallScreen || isLowEnd || lowFPS) {
-      document.body.classList.add('low-perf');
+    function measureRefreshRate() {
+      const now = performance.now();
+      const delta = now - lastTimestamp;
       
-      // Optional: disable dock hover effect on low-perf devices
-      const dock = document.querySelector('.top-links');
-      if (dock) {
-        dock.style.pointerEvents = 'none';
+      if (delta > 16) { // more than 16ms = below 60fps
+        frameTimings.push(delta);
       }
       
-      console.log('Low performance mode activated'); // you can remove this
+      frames++;
+      lastTimestamp = now;
+      
+      if (frames < 30) { // measure for ~30 frames
+        requestAnimationFrame(measureRefreshRate);
+      } else {
+        // Calculate average frame time
+        const avgFrameTime = frameTimings.reduce((a, b) => a + b, 0) / frameTimings.length;
+        
+        // Estimate refresh rate based on frame time
+        if (avgFrameTime < 9) {
+          estimatedRefreshRate = 120;
+        } else if (avgFrameTime < 12) {
+          estimatedRefreshRate = 90;
+        } else {
+          estimatedRefreshRate = 60;
+        }
+        
+        console.log(`Detected ~${estimatedRefreshRate}Hz display`);
+        
+        // Apply optimizations based on detected refresh rate
+        optimizeForRefreshRate(estimatedRefreshRate);
+      }
     }
-  }, 1500);
+    
+    function optimizeForRefreshRate(hz) {
+      // Force GPU acceleration for all animated elements
+      const animatedElements = document.querySelectorAll(
+        '.card, .contact-card, .contact-right, .top-links, .home-box, body::before, body::after'
+      );
+      
+      animatedElements.forEach(el => {
+        if (el.style) {
+          el.style.transform = 'translateZ(0)';
+          el.style.backfaceVisibility = 'hidden';
+          el.style.perspective = '1000';
+        }
+      });
+      
+      // Adjust animation timings based on refresh rate
+      const style = document.createElement('style');
+      
+      if (hz >= 120) {
+        // 120Hz devices can handle full speed
+        style.textContent = `
+          body::before { animation-duration: 25s; }
+          body::after { animation-duration: 30s; }
+          .card:hover { transition-duration: 0.15s; }
+        `;
+      } else if (hz >= 90) {
+        // 90Hz - slightly optimized
+        style.textContent = `
+          body::before { animation-duration: 30s; }
+          body::after { animation-duration: 35s; }
+          .card:hover { transition-duration: 0.2s; }
+        `;
+      } else {
+        // 60Hz - maximum optimization
+        style.textContent = `
+          body::before { 
+            animation-duration: 40s; 
+            opacity: 0.35; 
+          }
+          body::after { 
+            animation-duration: 45s; 
+            opacity: 0.35; 
+          }
+          .card, .contact-right {
+            backdrop-filter: blur(15px); /* slightly less blur */
+          }
+          .card:hover { 
+            transition-duration: 0.25s;
+            transform: translateY(-2px); /* smaller movement */
+          }
+        `;
+      }
+      
+      document.head.appendChild(style);
+      
+      // RAF throttling for smoother animations
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            // Your scroll handling code here
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    }
+    
+    // Start measuring
+    requestAnimationFrame(measureRefreshRate);
+    
+    // Also handle low memory devices
+    if (navigator.deviceMemory && navigator.deviceMemory < 4) {
+      const lowMemStyle = document.createElement('style');
+      lowMemStyle.textContent = `
+        body::before, body::after {
+          filter: blur(80px); /* less intensive blur */
+        }
+      `;
+      document.head.appendChild(lowMemStyle);
+    }
+  }
 })();
   
 </script>
