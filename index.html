@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JugaJug</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{
+--primary:#3a86ff;
+--primary-dark:#2667cc;
+--bg:#0f172a;
+--card:#1e293b;
+--text:#e2e8f0;
+--muted:#94a3b8;
+--border:#334155;
+--radius:6px;
+}
+
+/* light mode */
+body.light{
+--bg:#f8fafc;
+--card:#ffffff;
+--text:#0f172a;
+--muted:#475569;
+--border:#e2e8f0;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+body{
+font-family:'Inter',sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:0 20px;
+}
+
+section{
+padding:70px 0;
+}
+
+section .container{
+border-bottom:1px solid var(--border);
+padding-bottom:50px;
+}
+
+h1{font-size:2.4rem;margin-bottom:1rem;}
+h2{font-size:1.9rem;margin-bottom:2rem;text-align:center;}
+h3{font-size:1.1rem;margin-bottom:.6rem;}
+p{color:var(--muted);margin-bottom:1rem;}
+
+a{text-decoration:none;color:inherit;}
+
+.btn{
+display:inline-block;
+padding:10px 22px;
+background:var(--primary);
+border-radius:var(--radius);
+font-weight:600;
+font-size:.9rem;
+transition:.3s;
+border:none;
+cursor:pointer;
+color:white;
+text-align:center;
+}
+
+.btn:hover{background:var(--primary-dark);}
+
+/* header */
+header{
+position:sticky;
+top:0;
+background:transparent;
+backdrop-filter:blur(10px);
+z-index:1000;
+}
+
+.header-inner{
+display:flex;
+align-items:center;
+justify-content:space-between;
+height:65px;
+}
+
+.logo{
+font-weight:700;
+color:var(--primary);
+font-size:2.5rem;
+}
+
+/* dock */
+.top-links{
+position:fixed;
+top:4px;
+left:50%;
+transform:translateX(-50%);
+z-index:9999;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px) saturate(180%);
+-webkit-backdrop-filter:blur(20px) saturate(180%);
+border:1px solid rgba(255,255,255,0.15);
+border-radius:30px;
+padding:10px 20px;
+box-shadow:0 10px 35px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.2);
+gap:15px;
+display:flex;
+width:max-content;
+}
+
+.top-links a{
+font-size:.9rem;
+font-weight:500;
+transition:.3s;
+color:var(--text);
+padding:8px 12px;
+border-radius:10px;
+}
+
+.top-links a:hover{
+color:var(--primary);
+}
+
+.theme-btn{
+background:none;
+border:none;
+color:var(--text);
+cursor:pointer;
+font-size:1.1rem;
+padding:8px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:.3s;
+}
+
+.theme-btn:hover{
+background:rgba(255,255,255,0.1);
+}
+
+/* home */
+.home{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:40px;
+min-height:85vh;
+}
+
+.home-content{flex:1;}
+.home-image{flex:1;text-align:center;}
+
+.home-box{
+width:240px;
+height:240px;
+border-radius:var(--radius);
+background:linear-gradient(135deg,#1e3a8a,#3a86ff);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:90px;
+margin:auto;
+color:white;
+}
+
+/* grid */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:1.4rem;
+}
+
+.card{
+background:var(--card);
+padding:1.5rem;
+border-radius:var(--radius);
+transition:.25s ease;
+height:100%;
+display:flex;
+flex-direction:column;
+}
+
+.card:hover{transform:translateY(-4px);}
+
+.icon{
+font-size:1.7rem;
+margin-bottom:.7rem;
+color:var(--primary);
+}
+
+.section-subtitle{
+text-align:center;
+max-width:650px;
+margin:0 auto 2rem;
+font-size:.95rem;
+}
+
+/* tech */
+.tech-stack{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:1.5rem;
+margin-top:2rem;
+}
+
+.tech-item{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:.5rem;
+font-size:.9rem;
+color:var(--muted);
+transition:.3s;
+padding:10px;
+border-radius:var(--radius);
+}
+
+.tech-item i{font-size:1.8rem;}
+.tech-item:hover{
+color:var(--primary);
+transform:translateY(-3px);
+}
+
+/* ===== CONTACT ===== */
+.contact-layout{
+display:flex;
+gap:3rem;
+margin-top:3rem;
+align-items:stretch;
+}
+
+.contact-left{
+flex:1;
+display:flex;
+flex-direction:column;
+gap:1.5rem;
+}
+
+.contact-options{
+display:flex;
+flex-direction:column;
+gap:1.5rem;
+height:100%;
+}
+
+.contact-card{
+background:var(--card);
+padding:1.5rem;
+border-radius:10px;
+border:1px solid var(--border);
+transition:.3s;
+height:100%;
+display:flex;
+flex-direction:column;
+}
+
+.contact-card:hover{
+transform:translateY(-5px);
+border-color:var(--primary);
+}
+
+.gmail-color{
+  background: linear-gradient(30deg, #EA4335, #FBBC05, #34A853, #4285F4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contact-icon{
+font-size:2rem;
+margin-bottom:1rem;
+}
+
+.whatsapp-icon{
+color:#25D366;
+}
+
+.contact-card h3{
+margin-bottom:0.3rem;
+font-size:1.2rem;
+}
+
+.contact-card p{
+font-size:.9rem;
+margin-bottom:1.2rem;
+flex-grow:1;
+}
+
+/* Base styles for both buttons */
+.contact-card .btn,
+.contact-right button {
+    width: 100%;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: .9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* Email button hover - Gmail gradient colors */
+.contact-card:first-child .btn:hover {
+    background: linear-gradient(135deg, #EA4335 0%, #FBBC05 50%, #34A853 70%, #4285F4 100%);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+}
+
+/* WhatsApp button hover - WhatsApp green */
+.contact-card:last-child .btn:hover {
+    background: #25D366;
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+}
+
+/* Send Project Details button hover - primary blue */
+.contact-right button:hover {
+    background: var(--primary);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+}
+
+.contact-right{
+flex:1;
+padding:2rem;
+border-radius:10px;
+border:1px solid var(--border);
+background:var(--card);
+display:flex;
+align-items:center;
+}
+
+.contact-right form{
+width:100%;
+}
+
+.contact-right input,
+.contact-right textarea{
+width:100%;
+padding:14px;
+border-radius:8px;
+border:1px solid var(--border);
+background:rgba(255,255,255,.02);
+color:var(--text);
+margin-bottom:1.2rem;
+font-family:inherit;
+transition:.3s;
+}
+
+.contact-right input:focus,
+.contact-right textarea:focus{
+outline:none;
+border-color:var(--primary);
+background:rgba(255,255,255,.05);
+}
+
+.contact-right button {
+    width: 100%;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: .9rem;
+    cursor: pointer;
+    transition: .3s;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.contact-right button:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* scrolling */
+.fade-in{
+opacity:0;
+transform:translateY(30px);
+transition:.6s ease;
+}
+.fade-in.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* footer */
+footer {
+    border-top: 0.5px solid var(--border);
+    margin-top: 0;
+    padding:7px;
+    text-align: center;
+    color: var(--muted);
+    border-radius:var(--radius);
+}
+section:last-of-type .container {
+    border-bottom: none;
+}
+footer .container p {
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+/* liquid bg */
+body::before{
+content:"";
+position:fixed;
+width:700px;
+height:700px;
+top:-150px;
+left:-150px;
+background:radial-gradient(circle,#3a86ff,transparent 60%);
+filter:blur(120px);
+opacity:.45;
+animation:liquidFlow1 25s ease-in-out infinite;
+z-index:-2;
+will-change:transform;
+pointer-events:none;
+}
+
+body::after{
+content:"";
+position:fixed;
+width:700px;
+height:700px;
+bottom:-200px;
+right:-200px;
+background:radial-gradient(circle,#4cc9f0,transparent 60%);
+filter:blur(120px);
+opacity:.45;
+animation:liquidFlow2 30s ease-in-out infinite;
+z-index:-2;
+will-change:transform;
+pointer-events:none;
+}
+
+@keyframes liquidFlow1{
+0%{transform:translate(0,0)}
+50%{transform:translate(180px,110px)}
+100%{transform:translate(0,0)}
+}
+
+@keyframes liquidFlow2{
+0%{transform:translate(0,0)}
+50%{transform:translate(-180px,-110px)}
+100%{transform:translate(0,0)}
+}
+
+/* glass cards */
+.card,
+.contact-right{
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(20px) saturate(160%);
+-webkit-backdrop-filter:blur(20px) saturate(160%);
+border:1px solid rgba(255,255,255,0.12);
+box-shadow:0 10px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+body.light .card,
+body.light .contact-right{
+background:rgba(255,255,255,0.65);
+}
+
+/* (header layout, smaller dock) */
+@media (max-width: 768px) {    
+
+ /* Fix theme toggle button alignment */
+    .theme-btn {
+        position: absolute !important;
+        right: 15px !important;  /* consistent spacing from right */
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        z-index: 1001 !important;
+        margin: 0 !important;
+        padding: 8px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Ensure header-inner has proper positioning context */
+    .header-inner {
+        position: relative !important;
+        min-height: 60px !important;  /* consistent height */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important; /* pushes theme button to right */
+        padding: 0 15px !important;
+    }
+    
+    /* If logo is present, handle its spacing */
+    .logo, .logo-img {
+        margin-right: auto !important; /* pushes theme button to right */
+    }
+
+  .header-inner {
+    justify-content: center !important;
+    padding: 15px 0 !important;
+    height: auto !important;
+  }
+
+  .theme-btn {
+    position: absolute !important;
+    right: 20px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+
+  section {
+    padding: 50px 0 !important;
+  }
+  .home {
+    flex-direction: column !important;
+    text-align: center !important;
+    min-height: auto !important;
+    padding: 40px 0 !important;
+  }
+  .home-box {
+    width: 180px !important;
+    height: 180px !important;
+    font-size: 60px !important;
+  }
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+  .contact-layout {
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-links {
+    gap: 5px !important;
+    padding: 8px 12px !important;
+  }
+  .top-links a {
+    padding: 6px 8px !important;
+    font-size: 0.75rem !important;
+  }
+  .home-box {
+    width: 150px !important;
+    height: 150px !important;
+    font-size: 50px !important;
+  }
+  h1 { font-size: 1.8rem !important; }
+  h2 { font-size: 1.5rem !important; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="container header-inner">
+    <div class="logo">JugaJug</div>
+    <button id="themeToggle" class="theme-btn">
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
+  <!-- Dock is now inside header but fixed at bottom via CSS -->
+  <div class="top-links">
+    <a href="#home">Home</a>
+    <a href="#skills">Skills</a>
+    <a href="#services">Services</a>
+    <a href="#tech">Tech</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<section id="home" class="home container fade-in">
+<div class="home-content">
+<h1>At Your Service</h1>
+<p>I build scalable systems that solve real business problems efficiently.</p>
+<a href="#contact" class="btn">Start a Project</a>
+</div>
+<div class="home-image">
+<div class="home-box">
+<i class="fas fa-laptop-code"></i>
+</div>
+</div>
+</section>
+
+<section id="skills" class="fade-in">
+<div class="container">
+<h2>Technical Skills</h2>
+<div class="grid">
+<div class="card"><div class="icon"><i class="fas fa-code"></i></div><h3>Web Development</h3><p>Scalable frontend & backend systems.</p></div>
+<div class="card"><div class="icon"><i class="fas fa-brain"></i></div><h3>Machine Learning</h3><p>Predictive models & automation.</p></div>
+<div class="card"><div class="icon"><i class="fas fa-database"></i></div><h3>Database Systems</h3><p>Structured, optimized design.</p></div>
+</div>
+</div>
+</section>
+
+<section id="services" class="fade-in">
+<div class="container">
+<h2>Services</h2>
+<p class="section-subtitle">Reliable. Scalable. Intelligent.</p>
+<div class="grid">
+<div class="card"><h3>Custom Websites</h3><p>From idea to deployment.</p></div>
+<div class="card"><h3>AI & Machine Learning</h3><p>Data-driven intelligent systems.</p></div>
+<div class="card"><h3>Backend Systems</h3><p>Backend structure that scales.</p></div>
+</div>
+</div>
+</section>
+
+<section id="tech" class="fade-in">
+<div class="container">
+<h2>Tech Stack</h2>
+<div class="tech-stack">
+<div class="tech-item"><i class="fab fa-js-square"></i><span>JavaScript</span></div>
+<div class="tech-item"><i class="fab fa-python"></i><span>Python</span></div>
+<div class="tech-item"><i class="fab fa-react"></i><span>React</span></div>
+<div class="tech-item"><i class="fas fa-database"></i><span>PostgreSQL</span></div>
+<div class="tech-item"><i class="fas fa-chart-line"></i><span>TensorFlow</span></div>
+<div class="tech-item"><i class="fab fa-docker"></i><span>Docker</span></div>
+</div>
+</div>
+</section>
+
+<section id="contact" class="fade-in">
+<div class="container">
+<h2>Get in Touch</h2>
+<p class="section-subtitle">Send a short summary of your project or contact me directly.</p>
+<div class="contact-layout">
+<div class="contact-left">
+<div class="contact-options">
+<div class="contact-card">
+<div class="contact-icon"><i class="fas fa-envelope gmail-color"></i></div>
+<h3>Email Me</h3>
+<p>For detailed project discussions and proposals</p>
+<a href="mailto:geekbaki@gmail.com" class="btn">geekbaki@gmail.com</a>
+</div>
+<div class="contact-card">
+<div class="contact-icon"><i class="fab fa-whatsapp whatsapp-icon"></i></div>
+<h3>WhatsApp</h3>
+<p>For quick questions and instant communication</p>
+<a href="https://wa.me/8486188604" class="btn">+91 8486188604</a>
+</div>
+</div>
+</div>
+<div class="contact-right">
+<form action="https://formspree.io/f/mjgennvk" method="POST">
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
+<textarea name="message" rows="6" placeholder="Describe your project..." required></textarea>
+<button type="submit" class="btn">Send Project Details</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="container">
+<p>© <span id="year"></span> JugaJug</p>
+</div>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* scroll reveal */
+const faders = document.querySelectorAll(".fade-in");
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+faders.forEach(f => observer.observe(f));
+
+/* theme toggle */
+const body = document.body;
+const toggleBtn = document.getElementById("themeToggle");
+const systemPrefersLight = window.matchMedia("(prefers-color-scheme: light)");
+
+function applyTheme(theme) {
+  body.classList.toggle("light", theme === "light");
+  toggleBtn.innerHTML = theme === "light" ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+}
+
+const savedTheme = localStorage.getItem("theme");
+applyTheme(savedTheme ? savedTheme : (systemPrefersLight.matches ? "light" : "dark"));
+
+toggleBtn.addEventListener("click", () => {
+  const newTheme = body.classList.contains("light") ? "dark" : "light";
+  localStorage.setItem("theme", newTheme);
+  applyTheme(newTheme);
+});
+
+systemPrefersLight.addEventListener("change", (e) => {
+  if (!localStorage.getItem("theme")) {
+    applyTheme(e.matches ? "light" : "dark");
+  }
+});
+
+/* dock hover effect (only on devices that support hover, e.g., desktop) */
+const dock = document.querySelector(".top-links");
+if (dock && window.matchMedia("(hover: hover)").matches) {
+  const items = dock.querySelectorAll("a");
+  dock.addEventListener("mousemove", (e) => {
+    items.forEach(item => {
+      const rect = item.getBoundingClientRect();
+      const center = rect.left + rect.width / 2;
+      const distance = Math.abs(e.clientX - center);
+      let scale = 1;
+      if (distance < 120) {
+        scale = 1.6 - distance / 120;
+      }
+      item.style.transform = `scale(${scale})`;
+    });
+  });
+  dock.addEventListener("mouseleave", () => {
+    items.forEach(item => {
+      item.style.transform = "scale(1)";
+    });
+  });
+}
+
+// Hide JugaJug heading on mobile
+function hideHeadingOnMobile() {
+    const logo = document.querySelector('.logo');
+    if (!logo) return;
+    
+    if (window.innerWidth <= 768) {
+        logo.style.display = 'none';
+    } else {
+        logo.style.display = 'block'; // or 'flex' depending on your layout
+    }
+}
+
+// Run on load and resize
+window.addEventListener('load', hideHeadingOnMobile);
+window.addEventListener('resize', hideHeadingOnMobile);
+hideHeadingOnMobile(); // Run immediately
+
+// Force logo left, toggle right on desktop - FIXED VERSION
+function positionHeaderElements() {
+    const logo = document.querySelector('.logo');
+    const toggleBtn = document.getElementById('themeToggle');
+    const headerInner = document.querySelector('.header-inner');
+    const container = document.querySelector('header .container');
+    
+    if (!logo || !toggleBtn || !headerInner) return;
+    
+    if (window.innerWidth > 768) {
+        // Desktop: modify the container and header-inner
+        if (container) {
+            container.style.maxWidth = '100%'; // Override container max-width
+            container.style.padding = '0 30px';
+        }
+        
+        // Force header-inner to use full width
+        headerInner.style.display = 'flex';
+        headerInner.style.justifyContent = 'space-between';
+        headerInner.style.alignItems = 'center';
+        headerInner.style.width = '100%';
+        
+        // Logo to left corner
+        logo.style.marginRight = 'auto';
+        logo.style.marginLeft = '0';
+        
+        // Toggle to right corner
+        toggleBtn.style.marginLeft = 'auto';
+        toggleBtn.style.marginRight = '0';
+        toggleBtn.style.position = 'relative'; // Remove any absolute positioning
+        toggleBtn.style.right = 'auto';
+        toggleBtn.style.top = 'auto';
+        toggleBtn.style.transform = 'none';
+        
+    } else {
+        // Mobile: reset everything
+        if (container) {
+            container.style.maxWidth = '';
+            container.style.padding = '';
+        }
+        
+        headerInner.style.justifyContent = '';
+        headerInner.style.width = '';
+        
+        logo.style.marginRight = '';
+        logo.style.marginLeft = '';
+        
+        toggleBtn.style.marginLeft = '';
+        toggleBtn.style.marginRight = '';
+        toggleBtn.style.position = '';
+        toggleBtn.style.right = '';
+        toggleBtn.style.top = '';
+        toggleBtn.style.transform = '';
+    }
+}
+
+// Run on load and resize
+window.addEventListener('load', positionHeaderElements);
+window.addEventListener('resize', positionHeaderElements);
+positionHeaderElements();
+
+// hide toggle button on mobile
+function hideToggleOnMobile() {
+    const toggleBtn = document.getElementById('themeToggle');
+    if (!toggleBtn) return;
+    
+    if (window.innerWidth <= 768) {
+        toggleBtn.style.setProperty('display', 'none', 'important');
+    } else {
+        toggleBtn.style.removeProperty('display');
+    }
+}
+
+// Run on load and resize
+window.addEventListener('load', hideToggleOnMobile);
+window.addEventListener('resize', hideToggleOnMobile);
+hideToggleOnMobile();
+
+</script>
+</body>
+</html>
