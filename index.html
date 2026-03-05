@@ -651,32 +651,6 @@ function handleMobileLogo() {
 window.addEventListener('load', handleMobileLogo);
 window.addEventListener('resize', handleMobileLogo);
 handleMobileLogo();
-
-// Simple Android optimization
-(function() {
-  const isAndroid = /Android/i.test(navigator.userAgent);
-  
-  if (isAndroid) {
-    // Force GPU acceleration
-    document.body.style.transform = 'translateZ(0)';
-    
-    // Optimize all cards and glass elements
-    const elements = document.querySelectorAll('.card, .contact-card, .contact-right, .top-links');
-    elements.forEach(el => {
-      el.style.transform = 'translateZ(0)';
-      el.style.willChange = 'transform';
-    });
-    
-    // Slightly slower animations for smoother playback
-    const style = document.createElement('style');
-    style.textContent = `
-      body::before { animation-duration: 35s; }
-      body::after { animation-duration: 40s; }
-      .card:hover { transform: translateY(-2px); }
-    `;
-    document.head.appendChild(style);
-  }
-})();
   
 </script>
 </body>
