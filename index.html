@@ -652,7 +652,54 @@ window.addEventListener('load', handleMobileLogo);
 window.addEventListener('resize', handleMobileLogo);
 handleMobileLogo();
 
-/* theme‑toggle related JS completely removed */
+// Performance detection for Android devices
+(function() {
+  // Detect Android (any version including 14,15,16)
+  const isAndroid = /Android/i.test(navigator.userAgent);
+  const isSmallScreen = window.innerWidth <= 768;
+  
+  // Check CPU cores (4 or less = budget device)
+  const isLowEnd = navigator.hardwareConcurrency ? navigator.hardwareConcurrency <= 4 : false;
+  
+  // Quick FPS test (runs for 1 second)
+  let lowFPS = false;
+  let frameCount = 0;
+  let lastTime = performance.now();
+  
+  function measureFPS() {
+    frameCount++;
+    const now = performance.now();
+    const delta = now - lastTime;
+    
+    if (delta >= 1000) {
+      const fps = Math.round((frameCount * 1000) / delta);
+      if (fps < 45) lowFPS = true; // below 45 FPS = choppy
+      frameCount = 0;
+      lastTime = now;
+    }
+    
+    if (!lowFPS) requestAnimationFrame(measureFPS);
+  }
+  
+  requestAnimationFrame(measureFPS);
+  
+  // After 1.5 seconds, decide and apply low-perf class if needed
+  setTimeout(() => {
+    // Apply low-perf for Android OR small screen OR low cores OR low FPS
+    if (isAndroid || isSmallScreen || isLowEnd || lowFPS) {
+      document.body.classList.add('low-perf');
+      
+      // Optional: disable dock hover effect on low-perf devices
+      const dock = document.querySelector('.top-links');
+      if (dock) {
+        dock.style.pointerEvents = 'none';
+      }
+      
+      console.log('Low performance mode activated'); // you can remove this
+    }
+  }, 1500);
+})();
+  
 </script>
 </body>
 </html>
