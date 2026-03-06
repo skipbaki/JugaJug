@@ -18,7 +18,7 @@
 --radius:6px;
 }
 
-/* dark only – no light mode variables */
+/* theme */
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 
@@ -67,7 +67,7 @@ text-align:center;
 
 .btn:hover{background:var(--primary-dark);}
 
-/* ===== HEADER ===== */
+/* header */
 header{
 position:sticky;
 top:0;
@@ -89,7 +89,7 @@ color:var(--primary);
 font-size:2.5rem;
 }
 
-/* ===== DOCK (top fixed) ===== */
+/* dock */
 .top-links{
 position:fixed;
 top:4px;
@@ -178,7 +178,7 @@ margin:0 auto 2rem;
 font-size:.95rem;
 }
 
-/* ===== TECH STACK ===== */
+/* tech stack */
 .tech-stack{
 display:flex;
 flex-wrap:wrap;
@@ -205,7 +205,7 @@ color:var(--primary);
 transform:translateY(-3px);
 }
 
-/* ===== CONTACT (professional, no raw contact) ===== */
+/* contact */
 .contact-layout{
 display:flex;
 gap:3rem;
@@ -270,7 +270,7 @@ margin-bottom:1.2rem;
 flex-grow:1;
 }
 
-/* unified glass style for both contact buttons and form button */
+/* glass style for both contact buttons and form button */
 .contact-card .btn,
 .contact-right button {
     width: 100%;
@@ -292,7 +292,7 @@ flex-grow:1;
     text-decoration: none;
 }
 
-/* email button hover – Gmail vibe */
+/* email button hover */
 .contact-card:first-child .btn:hover {
     background: linear-gradient(135deg, #EA4335 0%, #FBBC05 50%, #34A853 70%, #4285F4 100%);
     color: white;
@@ -300,7 +300,7 @@ flex-grow:1;
     transform: translateY(-2px);
 }
 
-/* WhatsApp button hover – solid green */
+/* whatsapp button hover  */
 .contact-card:last-child .btn:hover {
     background: #25D366;
     color: white;
@@ -379,7 +379,7 @@ footer .container p {
     width: 100%;
 }
 
-/* ===== LIQUID BACKGROUND ===== */
+/* background */
 body::before{
 content:"";
 position:fixed;
@@ -424,7 +424,7 @@ pointer-events:none;
 100%{transform:translate(0,0)}
 }
 
-/* ===== GLASS CARDS ===== */
+/* cards */
 .card,
 .contact-right{
 background:rgba(255,255,255,0.06);
@@ -434,7 +434,7 @@ border:1px solid rgba(255,255,255,0.12);
 box-shadow:0 10px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
 }
 
-/* ===== MOBILE ===== */
+/* mobile */
 @media (max-width: 768px) {    
   .header-inner {
     justify-content: center !important;
@@ -462,7 +462,8 @@ box-shadow:0 10px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
     flex-direction: column !important;
     gap: 2rem !important;
   }
-  /* hide logo on mobile (keep dock clean) */
+  
+  /* hide logo on mobile */
   .logo {
     display: none !important;
   }
@@ -492,7 +493,6 @@ box-shadow:0 10px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
 <header>
   <div class="container header-inner">
     <div class="logo">JugaJug</div>
-    <!-- theme toggle button removed completely -->
   </div>
   <!-- dock stays -->
   <div class="top-links">
@@ -561,21 +561,21 @@ box-shadow:0 10px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
 <div class="contact-layout">
 <div class="contact-left">
 <div class="contact-options">
-  <!-- EMAIL CARD – professional action text, no raw email shown -->
+  <!-- email card -->
   <div class="contact-card">
     <div class="contact-icon"><i class="fas fa-envelope gmail-color"></i></div>
     <h3>Email</h3>
     <p>For detailed project discussions and proposals</p>
-    <!-- button triggers email client without displaying address -->
+  <!-- button triggers email client without displaying address -->
     <a href="mailto:geekbaki@gmail.com" class="btn">Send a Mail</a>
   </div>
-  <!-- WHATSAPP CARD – professional action text, no number shown -->
+  <!-- whatsapp card -->
   <div class="contact-card">
     <div class="contact-icon"><i class="fab fa-whatsapp whatsapp-icon"></i></div>
     <h3>WhatsApp</h3>
     <p>For quick questions and instant communication</p>
     <!-- button opens whatsapp chat without displaying number -->
-    <a href="https://wa.me/8486188604" class="btn">Chat on WhatsApp</a>
+    <a href="https://wa.me/8486188604?text=Hi%2C%20I%27m%20interested%20in%20a%20project.%20Can%20you%20share%20your%20charges%20and%20how%20we%20can%20proceed%3F" class="btn">Chat on WhatsApp</a>
   </div>
 </div>
 </div>
@@ -600,7 +600,7 @@ box-shadow:0 10px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
 
-/* scroll reveal */
+/* scroll */
 const faders = document.querySelectorAll(".fade-in");
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -612,8 +612,6 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.2 });
 
 faders.forEach(f => observer.observe(f));
-
-/* theme toggle removed – dark only */
 
 /* dock hover effect (desktop only) */
 const dock = document.querySelector(".top-links");
@@ -638,7 +636,7 @@ if (dock && window.matchMedia("(hover: hover)").matches) {
   });
 }
 
-/* ensure logo hidden on mobile (already in CSS, but just in case) */
+/* logo hidden on mobile */
 function handleMobileLogo() {
   const logo = document.querySelector('.logo');
   if (!logo) return;
