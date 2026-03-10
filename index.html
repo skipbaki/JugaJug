@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JugaJug</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root{
@@ -27,7 +27,7 @@
 html{scroll-behavior:smooth;}
 
 body{
-font-family:'Inter',sans-serif;
+font-family:'Space Grotesk', sans-serif;
 background:var(--bg);
 color:var(--text);
 line-height:1.6;
@@ -209,6 +209,19 @@ color:var(--primary);
 transform:translateY(-3px);
 }
 
+.tech-item i { 
+  font-size: 1.8rem;
+  transition: 0.2s;
+}
+
+.tech-item:nth-child(1):hover i { color: #F7DF1E; }  /* JavaScript yellow */
+.tech-item:nth-child(2):hover i { color: #3776AB; }  /* Python blue */
+.tech-item:nth-child(3):hover i { color: #61DAFB; }  /* React cyan */
+.tech-item:nth-child(4):hover i { color: #336791; }  /* PostgreSQL blue */
+.tech-item:nth-child(5):hover i { color: #FF6F00; }  /* TensorFlow orange */
+.tech-item:nth-child(6):hover i { color: #2496ED; }  /* Docker blue */
+
+
 /* contact */
 .contact-layout{
 display:flex;
@@ -285,7 +298,7 @@ flex-grow:1;
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 8px;
     color: var(--text);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
     font-weight: 600;
     font-size: .9rem;
     cursor: pointer;
