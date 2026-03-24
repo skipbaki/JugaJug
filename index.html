@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JugaJug</title>
 <meta name="google-site-verification" content="P3GV_Lkg2ZHjYX-qDgcSlky_1ZVA2Vuhk8FPhLngplo" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%233a86ff'/%3E%3Cstop offset='100%25' stop-color='%232667cc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23grad)'/%3E%3Ctext x='50' y='72' font-size='52' font-family='Arial, Helvetica, sans-serif' font-weight='bold' text-anchor='middle' fill='white'%3EJJ%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE/SURBVFhH7ZYxboNAEEVfiU3oGXTsLF2CpegouQHcAXED4AYmnoVYQqWNyRVwG2I3vgVYkClgYvwT7EdYEu8K5gda7H8y/2dmJwB+sZ8DAPgTQqAQCqEQCIFQCIRACIRCIBRCgRAIgVAIhEIIhEIohOJroGkaXdd1cRwjjuNwqP0XUPR9j67rEEWRw3EcOI6DPM8RRdGfsC+wLEsAKIoCSZLAcRyEYYg0TUHQ/b4QQtV1jSzLEAQBtCzLYRiGf6WvAtpG1zV0XUee50iSBHmeI8uyTwtYlsUCIYTQthXGcRzTNMW27SYLsCyLhRBCaNsK4ziOaZpC3/cbLWAuBBDCtgWYpmk4TdNJFhBC2JYBOI6Dqqo2WkAIYVsGcBwHZVl+qgWEELYtYLquC03TPlULLMsihBDatsCyrh/d2E8//bPvX8APp6JfLSuYcWgAAAAASUVORK5CYII=">
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='gradLarge' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%233a86ff'/%3E%3Cstop offset='100%25' stop-color='%232667cc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='40' fill='url(%23gradLarge)'/%3E%3Ctext x='90' y='128' font-size='96' font-family='Arial, Helvetica, sans-serif' font-weight='bold' text-anchor='middle' fill='white'%3EJJ%3C/text%3E%3C/svg%3E">
+
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -24,7 +28,6 @@ section{
 padding:70px 0;
 }
 
-/* Theme toggle button - desktop only */
 .theme-toggle {
   position: fixed;
   top: 16px;
@@ -59,7 +62,6 @@ padding:70px 0;
   box-shadow: 0 15px 40px rgba(0,0,0,0.4);
 }
 
-/* hide on mobile */
 @media (max-width: 768px) {
   .theme-toggle {
     display: none !important;
@@ -158,7 +160,6 @@ body {
   box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
 }
 
-/* Light mode popup adjustments */
 body.light-mode .popup-content {
   background: #ffffff;
   border: 2px dotted #dddddd;
@@ -184,7 +185,6 @@ body.light-mode .popup-close:hover {
   color: #ffffff;
 }
 
-/* footer */
 footer {
     border-top: 0.5px solid #334155;
     margin-top: 0;
@@ -209,7 +209,6 @@ body.light-mode footer {
 </style>
 </head>
 <body>
-<!-- Theme Toggle Button - Desktop only -->
 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
   <i class="fas fa-sun" id="themeIcon"></i>
   <span id="themeText">Light</span>
@@ -297,20 +296,16 @@ body.light-mode footer {
 <div class="contact-layout">
 <div class="contact-left">
 <div class="contact-options">
-<!-- email card -->
   <div class="contact-card">
     <div class="contact-icon"><i class="fas fa-envelope gmail-color"></i></div>
     <h3>Email</h3>
     <p>For detailed project discussions and proposals</p>
-<!-- button triggers email client without displaying address -->
     <a href="mailto:geekbaki@gmail.com" class="btn">Send a Mail</a>
   </div>
-<!-- whatsapp card -->
   <div class="contact-card">
     <div class="contact-icon"><i class="fab fa-whatsapp whatsapp-icon"></i></div>
     <h3>WhatsApp</h3>
     <p>For quick questions and instant communication</p>
-<!-- button opens whatsapp chat without displaying number -->
     <a href="https://wa.me/8486188604?text=Hi%2C%20I%27m%20interested%20in%20a%20project.%20Can%20you%20share%20your%20charges%20and%20how%20we%20can%20proceed%3F" class="btn">Chat on WhatsApp</a>
   </div>
 </div>
@@ -334,14 +329,12 @@ body.light-mode footer {
 </footer>
 
 <script>
-// switcher
 const themeStyle = document.getElementById('theme-style');
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
 const themeText = document.getElementById('themeText');
 const body = document.body;
 
-// dark mode (index.html)
 const darkModeCSS = `
 :root{
 --primary:#3a86ff;
@@ -807,8 +800,6 @@ box-shadow:0 10px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
 }
 `;
 
-
-// light mode (nothing.html)
 const lightModeCSS = `
 :root {
   --bg: #ffffff;
@@ -1208,7 +1199,6 @@ footer .container p {
 }
 `;
 
-// Function to set theme
 function setTheme(theme) {
   if (theme === 'light') {
     themeStyle.innerHTML = lightModeCSS;
@@ -1225,15 +1215,12 @@ function setTheme(theme) {
   }
 }
 
-// Check for saved theme or default to dark
 const savedTheme = localStorage.getItem('jugajug-theme');
 if (savedTheme === 'light' && window.innerWidth > 768) {
   setTheme('light');
 } else {
   setTheme('dark');
 }
-
-// Toggle theme on button click
 if (themeToggle) {
   themeToggle.addEventListener('click', () => {
     const isLightMode = body.classList.contains('light-mode');
@@ -1243,7 +1230,6 @@ if (themeToggle) {
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
-/* scroll */
 const faders = document.querySelectorAll(".fade-in");
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -1256,7 +1242,6 @@ const observer = new IntersectionObserver(entries => {
 
 faders.forEach(f => observer.observe(f));
 
-/* dock hover effect (desktop only) */
 const dock = document.querySelector(".top-links");
 if (dock && window.matchMedia("(hover: hover)").matches) {
   const items = dock.querySelectorAll("a");
@@ -1279,7 +1264,6 @@ if (dock && window.matchMedia("(hover: hover)").matches) {
   });
 }
 
-/* logo hidden on mobile */
 function handleMobileLogo() {
   const logo = document.querySelector('.logo');
   if (!logo) return;
@@ -1293,7 +1277,6 @@ window.addEventListener('load', handleMobileLogo);
 window.addEventListener('resize', handleMobileLogo);
 handleMobileLogo();
 
-// Form submission with popup
 const contactForm = document.getElementById('contactForm');
 const popupOverlay = document.getElementById('popupOverlay');
 
@@ -1311,7 +1294,6 @@ popupOverlay.addEventListener('click', function(e) {
   }
 });
 
-// Handle form submission
 if (contactForm) {
   contactForm.addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -1345,7 +1327,6 @@ if (contactForm) {
   });
 }
 
-// Make closePopup function globally available
 window.closePopup = closePopup;
 
 </script>
