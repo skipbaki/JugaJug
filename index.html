@@ -8,7 +8,7 @@
     <meta name="google-site-verification" content="P3GV_Lkg2ZHjYX-qDgcSlky_1ZVA2Vuhk8FPhLngplo">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg
 							xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%233a86ff'/%3E%3Ctext x='50' y='72' font-size='52' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3EJJ%3C/text%3E%3C/svg%3E">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
       :root {
@@ -509,24 +509,37 @@
       .contact {
         display: grid;
         grid-template-columns: .75fr 1.25fr;
-        gap: 14px
+        gap: 14px;
+        align-items: stretch
       }
 
+      /*
+      CONTACT SECTION COMPACTED
+      The previous contact cards inherited large vertical spacing.
+      These values keep the alignment but reduce the unnecessary height.
+    */
       .contact-info {
-        padding: 30px;
+        padding: 24px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between
+        justify-content: space-between;
+        min-height: 0
+      }
+
+      .contact-info h3 {
+        font-size: clamp(2rem, 4vw, 3.2rem) !important;
+        line-height: 1.05;
+        margin-top: 18px !important
       }
 
       .contact-links {
         display: grid;
-        gap: 10px;
-        margin-top: 25px
+        gap: 8px;
+        margin-top: 20px
       }
 
       .contact-link {
-        padding: 16px;
+        padding: 12px 14px;
         border: 1px solid var(--line);
         border-radius: 18px;
         display: flex;
@@ -546,18 +559,18 @@
       }
 
       .contact-form {
-        padding: clamp(22px, 4vw, 40px)
+        padding: 24px
       }
 
       .form-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 12px
+        gap: 10px
       }
 
       .field {
         width: 100%;
-        padding: 14px 15px;
+        padding: 12px 14px;
         border-radius: 16px;
         border: 1px solid var(--line);
         background: rgba(255, 255, 255, .035);
@@ -573,12 +586,12 @@
 
       textarea.field {
         resize: vertical;
-        min-height: 150px;
+        min-height: 125px;
         grid-column: 1/-1
       }
 
       .contact-form .btn {
-        margin-top: 12px;
+        margin-top: 10px;
         width: 100%
       }
 
@@ -748,10 +761,17 @@
         }
 
         .tech-cloud,
-        .tech-note,
+        .tech-note {
+          padding: 22px
+        }
+
         .contact-info,
         .contact-form {
-          padding: 22px
+          padding: 20px
+        }
+
+        .contact-info h3 {
+          font-size: 2.5rem !important
         }
 
         .form-grid {
@@ -926,6 +946,7 @@
       </button>
     </header>
     <main>
+
       <section id="home" class="section">
         <div class="shell hero">
           <article class="module hero-main">
@@ -933,14 +954,14 @@
               <span class="pulse"></span> Independent digital engineering
             </div>
             <div>
-              <h1>Build things <br> that <span>work.</span>
+              <h1> Build things <br> that <span>work.</span>
               </h1>
-              <p class="hero-copy">I build scalable systems and digital experiences that solve real business problems without unnecessary complexity.</p>
+              <p class="hero-copy"> I build scalable systems and digital experiences that solve real business problems without unnecessary complexity. </p>
             </div>
             <div class="hero-actions">
-              <a class="btn primary" href="#contact">Start a project <i class="fas fa-arrow-right"></i>
+              <a class="btn primary" href="#contact"> Start a project <i class="fas fa-arrow-right"></i>
               </a>
-              <a class="btn" href="#services">Explore services</a>
+              <a class="btn" href="#services"> Explore services </a>
             </div>
           </article>
           <div class="hero-side">
@@ -949,17 +970,18 @@
             </article>
             <article class="module mini-stat">
               <span>JugaJug / 2026</span>
-              <strong>Code → <br>Systems → <br>Results. </strong>
+              <strong> Code → <br> Systems → <br> Results. </strong>
               <span>Web · AI · Backend · Data</span>
             </article>
           </div>
         </div>
       </section>
+ 
       <section id="skills" class="section">
         <div class="shell">
           <div class="section-head">
             <h2>Skills</h2>
-            <p>A focused technical toolkit for building products from interface to infrastructure.</p>
+            <p> A focused technical toolkit for building products from interface to infrastructure. </p>
           </div>
           <div class="module-grid">
             <article class="module expandable" data-expand tabindex="0" role="button" aria-expanded="false">
@@ -969,7 +991,7 @@
                     <i class="fas fa-code"></i>
                   </div>
                   <h3 class="module-title">Web Development</h3>
-                  <div class="detail">Scalable frontend and backend systems, responsive interfaces, APIs and production-ready web applications.</div>
+                  <div class="detail"> Scalable frontend and backend systems, responsive interfaces, APIs and production-ready web applications. </div>
                 </div>
                 <div class="module-foot">
                   <span>01</span>
@@ -984,7 +1006,7 @@
                     <i class="fas fa-brain"></i>
                   </div>
                   <h3 class="module-title">Machine Learning</h3>
-                  <div class="detail">Predictive models, automation and intelligent systems built around useful data rather than hype.</div>
+                  <div class="detail"> Predictive models, automation and intelligent systems built around useful data rather than hype. </div>
                 </div>
                 <div class="module-foot">
                   <span>02</span>
@@ -999,7 +1021,7 @@
                     <i class="fas fa-database"></i>
                   </div>
                   <h3 class="module-title">Database Systems</h3>
-                  <div class="detail">Structured, optimized data design with attention to reliability, queries, storage and scalability.</div>
+                  <div class="detail"> Structured, optimized data design with attention to reliability, queries, storage and scalability. </div>
                 </div>
                 <div class="module-foot">
                   <span>03</span>
@@ -1010,11 +1032,12 @@
           </div>
         </div>
       </section>
+
       <section id="services" class="section">
         <div class="shell">
           <div class="section-head">
             <h2>Services</h2>
-            <p>Reliable. Scalable. Intelligent. Choose a module to see what sits underneath it.</p>
+            <p> Reliable. Scalable. Intelligent. Choose a module to see what sits underneath it. </p>
           </div>
           <div class="module-grid">
             <article class="module expandable" data-expand tabindex="0" role="button" aria-expanded="false">
@@ -1024,7 +1047,7 @@
                     <i class="fas fa-window-maximize"></i>
                   </div>
                   <h3 class="module-title">Custom Websites</h3>
-                  <div class="detail">From concept and interface architecture to deployment. Responsive, maintainable and built around the actual goal.</div>
+                  <div class="detail"> From concept and interface architecture to deployment. Responsive, maintainable and built around the actual goal. </div>
                 </div>
                 <div class="module-foot">
                   <span>01 / BUILD</span>
@@ -1039,7 +1062,7 @@
                     <i class="fas fa-robot"></i>
                   </div>
                   <h3 class="module-title">AI &amp; Machine Learning</h3>
-                  <div class="detail">Intelligent features, data workflows and automation that solve a specific problem instead of adding AI for decoration.</div>
+                  <div class="detail"> Intelligent features, data workflows and automation that solve a specific problem instead of adding AI for decoration. </div>
                 </div>
                 <div class="module-foot">
                   <span>02 / INTELLIGENCE</span>
@@ -1054,7 +1077,7 @@
                     <i class="fas fa-server"></i>
                   </div>
                   <h3 class="module-title">Backend Systems</h3>
-                  <div class="detail">APIs, databases and server-side architecture designed to remain understandable as the product grows.</div>
+                  <div class="detail"> APIs, databases and server-side architecture designed to remain understandable as the product grows. </div>
                 </div>
                 <div class="module-foot">
                   <span>03 / SCALE</span>
@@ -1065,11 +1088,12 @@
           </div>
         </div>
       </section>
+
       <section id="tech" class="section">
         <div class="shell">
           <div class="section-head">
             <h2>Tech Stack</h2>
-            <p>Tools are selected according to the problem, not because a technology is fashionable.</p>
+            <p> Tools are selected according to the problem, not because a technology is fashionable. </p>
           </div>
           <div class="tech">
             <article class="module tech-cloud">
@@ -1094,7 +1118,7 @@
               <i class="fas fa-layer-group"></i>
               <div>
                 <h3>Right tool. Right layer.</h3>
-                <p>Frontend, backend, data and deployment should work as one system.</p>
+                <p> Frontend, backend, data and deployment should work as one system. </p>
               </div>
             </article>
           </div>
@@ -1104,27 +1128,27 @@
         <div class="shell">
           <div class="section-head">
             <h2>Let's talk.</h2>
-            <p>Send a short project summary or reach out directly.</p>
+            <p> Send a short project summary or reach out directly. </p>
           </div>
           <div class="contact">
             <article class="module contact-info">
               <div>
-                <div class="eyebrow">CONTACT / 05</div>
-                <h3 style="font-size:clamp(2rem,5vw,4rem);letter-spacing:-.06em;margin-top:25px">Have a problem <br> worth solving? </h3>
+                <div class="eyebrow"> CONTACT / 05 </div>
+                <h3> Have a problem <br> worth solving? </h3>
               </div>
               <div class="contact-links">
                 <a class="contact-link" href="mailto:geekbaki@gmail.com">
                   <i class="fas fa-envelope"></i>
                   <span>
                     <strong>Email</strong>
-                    <small style="display:block;color:var(--muted)">Detailed project discussions</small>
+                    <small style="display:block;color:var(--muted)"> Detailed project discussions </small>
                   </span>
                 </a>
                 <a class="contact-link" href="https://wa.me/918486188604?text=Hi%2C%20I%27m%20interested%20in%20a%20project.%20Can%20you%20share%20your%20charges%20and%20how%20we%20can%20proceed%3F">
                   <i class="fab fa-whatsapp"></i>
                   <span>
                     <strong>WhatsApp</strong>
-                    <small style="display:block;color:var(--muted)">Quick questions</small>
+                    <small style="display:block;color:var(--muted)"> Quick questions </small>
                   </span>
                 </a>
               </div>
@@ -1132,14 +1156,14 @@
             <article class="module contact-form">
               <form id="contactForm">
                 <div class="form-grid">
-                  <label class="sr" for="fName">Your name</label>
+                  <label class="sr" for="fName"> Your name </label>
                   <input class="field" id="fName" type="text" name="name" placeholder="Your Name" autocomplete="name" required>
-                  <label class="sr" for="fEmail">Your email</label>
+                  <label class="sr" for="fEmail"> Your email </label>
                   <input class="field" id="fEmail" type="email" name="email" placeholder="Your Email" autocomplete="email" required>
-                  <label class="sr" for="fMsg">Project description</label>
+                  <label class="sr" for="fMsg"> Project description </label>
                   <textarea class="field" id="fMsg" name="message" placeholder="Describe your project..." required></textarea>
                 </div>
-                <button class="btn primary" type="submit">Send Project Details <i class="fas fa-arrow-right"></i>
+                <button class="btn primary" type="submit"> Send Project Details <i class="fas fa-arrow-right"></i>
                 </button>
               </form>
             </article>
@@ -1154,61 +1178,95 @@
       <div class="popup-card">
         <i class="fas fa-check-circle"></i>
         <h3>Message Sent!</h3>
-        <p>Thank you for reaching out. I'll get back to you within 24 hours.</p>
-        <button class="btn primary" id="popupClose">Close</button>
+        <p> Thank you for reaching out. I'll get back to you within 24 hours. </p>
+        <button class="btn primary" id="popupClose"> Close </button>
       </div>
     </div>
     <script>
-      const body = document.body,
-        themeIcon = document.getElementById('themeIcon');
+      const body = document.body;
+      const themeIcon = document.getElementById('themeIcon');
 
       function setTheme(t) {
         body.classList.toggle('light-mode', t === 'light');
         try {
-          localStorage.setItem('jugajug-theme', t)
+          localStorage.setItem('jugajug-theme', t);
         } catch (e) {}
         themeIcon.className = t === 'light' ? 'fas fa-moon' : 'fas fa-sun';
-        document.querySelector('meta[name="theme-color"]').setAttribute('content', t === 'light' ? '#ffffff' : '#0b1020')
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', t === 'light' ? '#ffffff' : '#0b1020');
       }
       let saved = null;
       try {
-        saved = localStorage.getItem('jugajug-theme')
+        saved = localStorage.getItem('jugajug-theme');
       } catch (e) {}
       setTheme(saved === 'light' ? 'light' : 'dark');
-      document.getElementById('themeToggle').addEventListener('click', () => setTheme(body.classList.contains('light-mode') ? 'dark' : 'light'));
+      document.getElementById('themeToggle').addEventListener('click',
+        () => {
+          setTheme(body.classList.contains('light-mode') ? 'dark' : 'light');
+        });
 
       function toggleCard(card) {
         document.querySelectorAll('[data-expand].open').forEach(x => {
           if (x !== card) {
             x.classList.remove('open');
-            x.setAttribute('aria-expanded', 'false')
+            x.setAttribute('aria-expanded', 'false');
           }
         });
         const open = card.classList.toggle('open');
-        card.setAttribute('aria-expanded', open)
+        card.setAttribute('aria-expanded', open);
       }
       document.querySelectorAll('[data-expand]').forEach(c => {
-        c.addEventListener('click', () => toggleCard(c));
+        c.addEventListener('click',
+          () => toggleCard(c));
         c.addEventListener('keydown', e => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            toggleCard(c)
+            toggleCard(c);
           }
-        })
+        });
       });
-      const sections = [...document.querySelectorAll('main section[id]')],
-        links = [...document.querySelectorAll('.nav-link')];
+      const sections = [...document.querySelectorAll('main section[id]')];
+      const links = [...document.querySelectorAll('.nav-link')];
 
+      function scrollToSection(id) {
+        const target = document.getElementById(id);
+        if (!target) return;
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+  
+      links.forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          const id = link.getAttribute('href').replace('#', '');
+          scrollToSection(id);
+        });
+      });
+     
+      document.querySelectorAll('.hero-actions a[href^="#"]').forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          const id = link.getAttribute('href').replace('#', '');
+          scrollToSection(id);
+        });
+      });
+   
       function spy() {
         let id = sections[0].id;
         if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) {
-          id = sections[sections.length - 1].id
+          id = sections[sections.length - 1].id;
         } else {
           sections.forEach(s => {
-            if (s.getBoundingClientRect().top <= innerHeight * .4) id = s.id
-          })
+            if (s.getBoundingClientRect().top <= innerHeight * .4) {
+              id = s.id;
+            }
+          });
         }
-        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id))
+        links.forEach(l => {
+          l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+        });
       }
       addEventListener('scroll', spy, {
         passive: true
@@ -1219,19 +1277,23 @@
       const popup = document.getElementById('popup');
       document.getElementById('popupClose').onclick = () => popup.classList.remove('show');
       popup.addEventListener('click', e => {
-        if (e.target === popup) popup.classList.remove('show')
+        if (e.target === popup) {
+          popup.classList.remove('show');
+        }
       });
       addEventListener('keydown', e => {
-        if (e.key === 'Escape') popup.classList.remove('show')
+        if (e.key === 'Escape') {
+          popup.classList.remove('show');
+        }
       });
       document.getElementById('contactForm').addEventListener('submit', async e => {
         e.preventDefault();
-        const f = e.currentTarget,
-          data = {
-            name: f.name.value,
-            email: f.email.value,
-            message: f.message.value
-          };
+        const f = e.currentTarget;
+        const data = {
+          name: f.name.value,
+          email: f.email.value,
+          message: f.message.value
+        };
         try {
           const r = await fetch('https://formspree.io/f/mjgennvk', {
             method: 'POST',
@@ -1243,10 +1305,12 @@
           });
           if (r.ok) {
             f.reset();
-            popup.classList.add('show')
-          } else alert('Something went wrong. Please try again.')
+            popup.classList.add('show');
+          } else {
+            alert('Something went wrong. Please try again.');
+          }
         } catch (err) {
-          alert('Network error. Please check your connection.')
+          alert('Network error. Please check your connection.');
         }
       });
     </script>
