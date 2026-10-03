@@ -19,10 +19,9 @@
         --muted: #93a1b8;
         --line: rgba(255, 255, 255, .13);
         --accent: #3a86ff;
-        --accent2: #4cc9f0;
         --shadow: 0 24px 70px rgba(0, 0, 0, .28);
         --radius: 28px;
-        --pad: clamp(16px, 3vw, 30px);
+        --top: env(safe-area-inset-top, 0px)
       }
 
       * {
@@ -53,6 +52,20 @@
       input,
       textarea {
         font: inherit
+      }
+
+      .sr {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px
       }
 
       body:before,
@@ -102,7 +115,7 @@
 
       .topbar {
         position: fixed;
-        top: 12px;
+        top: calc(12px + var(--top));
         left: 50%;
         transform: translateX(-50%);
         z-index: 1000;
@@ -121,7 +134,7 @@
 
       .brand {
         position: fixed;
-        top: 19px;
+        top: calc(19px + var(--top));
         left: 24px;
         z-index: 1001;
         font-size: 1.45rem;
@@ -151,7 +164,7 @@
       .theme-toggle {
         position: fixed;
         right: 22px;
-        top: 14px;
+        top: calc(14px + var(--top));
         z-index: 1001;
         border: 1px solid var(--line);
         background: var(--surface);
@@ -170,12 +183,12 @@
       }
 
       main {
-        padding-top: 90px
+        padding-top: calc(90px + var(--top))
       }
 
       .section {
         padding: clamp(45px, 8vw, 90px) 0;
-        scroll-margin-top: 80px
+        scroll-margin-top: calc(80px + var(--top))
       }
 
       .hero {
@@ -264,7 +277,7 @@
       .btn.primary {
         background: var(--accent);
         border-color: var(--accent);
-        color: white
+        color: #fff
       }
 
       .btn:hover {
@@ -274,8 +287,9 @@
 
       .hero-side {
         display: grid;
-        grid-template-rows: 1.05fr .95fr;
-        gap: 18px
+        grid-template-rows: 1fr 1fr;
+        gap: 18px;
+        min-height: 0
       }
 
       .orb-card {
@@ -306,12 +320,14 @@
         padding: 25px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between
+        justify-content: space-between;
+        gap: 12px
       }
 
       .mini-stat strong {
-        font-size: clamp(2rem, 5vw, 4rem);
-        letter-spacing: -.06em
+        font-size: clamp(1.8rem, 3.6vw, 3.2rem);
+        letter-spacing: -.06em;
+        line-height: 1
       }
 
       .mini-stat span {
@@ -340,15 +356,14 @@
 
       .module-grid {
         display: grid;
-        grid-template-columns: repeat(12, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 14px
       }
 
       .expandable {
-        padding: 0;
         cursor: pointer;
         min-height: 210px;
-        transition: grid-column .45s cubic-bezier(.2, .8, .2, 1), transform .3s, background .3s
+        transition: transform .3s, background .3s
       }
 
       .expandable:hover {
@@ -364,25 +379,12 @@
         justify-content: space-between
       }
 
-      .expandable:nth-child(1) {
-        grid-column: span 5
-      }
-
-      .expandable:nth-child(2) {
-        grid-column: span 4
-      }
-
-      .expandable:nth-child(3) {
-        grid-column: span 3
-      }
-
       .expandable.open {
-        grid-column: span 8;
         background: var(--surface2)
       }
 
       .expandable.open .detail {
-        max-height: 180px;
+        max-height: 220px;
         opacity: 1;
         margin-top: 18px
       }
@@ -436,25 +438,67 @@
       }
 
       .chip {
+        --c: #93a1b8;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
         padding: 10px 14px;
-        border: 1px solid var(--line);
+        border: 1px solid color-mix(in srgb, var(--c) 40%, transparent);
         border-radius: 999px;
-        color: var(--muted);
-        background: rgba(255, 255, 255, .035);
+        color: var(--text);
+        background: color-mix(in srgb, var(--c) 12%, transparent);
         transition: .25s
       }
 
+      .chip i {
+        color: var(--c)
+      }
+
       .chip:hover {
-        color: var(--text);
-        border-color: rgba(58, 134, 255, .7);
+        border-color: var(--c);
+        background: color-mix(in srgb, var(--c) 22%, transparent);
+        box-shadow: 0 0 22px color-mix(in srgb, var(--c) 35%, transparent);
         transform: translateY(-2px)
+      }
+
+      .js {
+        --c: #f7df1e
+      }
+
+      .py {
+        --c: #3776ab
+      }
+
+      .rc {
+        --c: #61dafb
+      }
+
+      .pg {
+        --c: #4f8ac4
+      }
+
+      .tf {
+        --c: #ff6f00
+      }
+
+      .dk {
+        --c: #2496ed
+      }
+
+      .rs {
+        --c: #8b7cf6
+      }
+
+      .gt {
+        --c: #f05032
       }
 
       .tech-note {
         padding: clamp(22px, 4vw, 40px);
         display: flex;
         flex-direction: column;
-        justify-content: space-between
+        justify-content: space-between;
+        gap: 20px
       }
 
       .tech-note i {
@@ -545,10 +589,6 @@
         text-align: center
       }
 
-      .mobile-nav {
-        display: none
-      }
-
       .popup {
         position: fixed;
         inset: 0;
@@ -618,9 +658,8 @@
           grid-template-columns: repeat(2, 1fr)
         }
 
-        .expandable:nth-child(n),
-        .expandable.open {
-          grid-column: span 1
+        .expandable:last-child:nth-child(odd) {
+          grid-column: 1/-1
         }
 
         .tech,
@@ -633,7 +672,7 @@
         }
 
         .topbar {
-          top: 10px
+          top: calc(10px + var(--top))
         }
 
         .section-head {
@@ -652,7 +691,7 @@
         }
 
         main {
-          padding-top: 78px
+          padding-top: calc(78px + var(--top))
         }
 
         .topbar {
@@ -664,21 +703,14 @@
         }
 
         .nav-link {
-          font-size: .72rem;
-          padding: 8px 9px
-        }
-
-        .nav-link:nth-child(4),
-        .nav-link:nth-child(5) {
-          display: none
+          font-size: .7rem;
+          padding: 8px 7px
         }
 
         .theme-toggle {
-          display: none
-        }
-
-        .topbar {
-          padding-right: 5px
+          top: auto;
+          bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+          right: 16px
         }
 
         .hero-main {
@@ -713,10 +745,6 @@
 
         .expandable {
           min-height: 190px
-        }
-
-        .expandable.open {
-          min-height: 310px
         }
 
         .tech-cloud,
@@ -764,7 +792,7 @@
         }
       }
 
-      /* LIGHT THEME: preserve the existing JugaJug light visual language */
+      /* LIGHT */
       body.light-mode {
         --bg: #fff;
         --surface: #f5f5f7;
@@ -773,7 +801,6 @@
         --muted: #666;
         --line: #ddd;
         --accent: #000;
-        --accent2: #000;
         --shadow: none;
         background-image: radial-gradient(var(--line) 1px, transparent 1px);
         background-size: 24px 24px
@@ -828,7 +855,21 @@
         color: #fff
       }
 
-      .light-mode .chip,
+      .light-mode .chip {
+        border-radius: 0;
+        background: #fff;
+        border: 2px solid color-mix(in srgb, var(--c) 70%, #fff)
+      }
+
+      .light-mode .chip i {
+        filter: drop-shadow(0 0 .6px rgba(0, 0, 0, .55))
+      }
+
+      .light-mode .chip:hover {
+        background: color-mix(in srgb, var(--c) 14%, #fff);
+        box-shadow: none
+      }
+
       .light-mode .contact-link,
       .light-mode .field {
         border: 2px dotted var(--line);
@@ -918,7 +959,7 @@
             <p>A focused technical toolkit for building products from interface to infrastructure.</p>
           </div>
           <div class="module-grid">
-            <article class="module expandable" data-expand>
+            <article class="module expandable" data-expand tabindex="0" role="button" aria-expanded="false">
               <div class="module-inner">
                 <div>
                   <div class="module-icon">
@@ -933,7 +974,7 @@
                 </div>
               </div>
             </article>
-            <article class="module expandable" data-expand>
+            <article class="module expandable" data-expand tabindex="0" role="button" aria-expanded="false">
               <div class="module-inner">
                 <div>
                   <div class="module-icon">
@@ -948,7 +989,7 @@
                 </div>
               </div>
             </article>
-            <article class="module expandable" data-expand>
+            <article class="module expandable" data-expand tabindex="0" role="button" aria-expanded="false">
               <div class="module-inner">
                 <div>
                   <div class="module-icon">
@@ -973,7 +1014,7 @@
             <p>Reliable. Scalable. Intelligent. Choose a module to see what sits underneath it.</p>
           </div>
           <div class="module-grid">
-            <article class="module expandable" data-expand>
+            <article class="module expandable" data-expand tabindex="0" role="button" aria-expanded="false">
               <div class="module-inner">
                 <div>
                   <div class="module-icon">
@@ -988,7 +1029,7 @@
                 </div>
               </div>
             </article>
-            <article class="module expandable" data-expand>
+            <article class="module expandable" data-expand tabindex="0" role="button" aria-expanded="false">
               <div class="module-inner">
                 <div>
                   <div class="module-icon">
@@ -1003,7 +1044,7 @@
                 </div>
               </div>
             </article>
-            <article class="module expandable" data-expand>
+            <article class="module expandable" data-expand tabindex="0" role="button" aria-expanded="false">
               <div class="module-inner">
                 <div>
                   <div class="module-icon">
@@ -1029,20 +1070,22 @@
           </div>
           <div class="tech">
             <article class="module tech-cloud">
-              <span class="chip">
+              <span class="chip js">
                 <i class="fab fa-js-square"></i> JavaScript </span>
-              <span class="chip">
+              <span class="chip py">
                 <i class="fab fa-python"></i> Python </span>
-              <span class="chip">
+              <span class="chip rc">
                 <i class="fab fa-react"></i> React </span>
-              <span class="chip">
+              <span class="chip pg">
                 <i class="fas fa-database"></i> PostgreSQL </span>
-              <span class="chip">
+              <span class="chip tf">
                 <i class="fas fa-chart-line"></i> TensorFlow </span>
-              <span class="chip">
+              <span class="chip dk">
                 <i class="fab fa-docker"></i> Docker </span>
-              <span class="chip">REST APIs</span>
-              <span class="chip">Git</span>
+              <span class="chip rs">
+                <i class="fas fa-cloud"></i> REST APIs </span>
+              <span class="chip gt">
+                <i class="fab fa-git-alt"></i> Git </span>
             </article>
             <article class="module tech-note">
               <i class="fas fa-layer-group"></i>
@@ -1074,7 +1117,7 @@
                     <small style="display:block;color:var(--muted)">Detailed project discussions</small>
                   </span>
                 </a>
-                <a class="contact-link" href="https://wa.me/8486188604?text=Hi%2C%20I%27m%20interested%20in%20a%20project.%20Can%20you%20share%20your%20charges%20and%20how%20we%20can%20proceed%3F">
+                <a class="contact-link" href="https://wa.me/918486188604?text=Hi%2C%20I%27m%20interested%20in%20a%20project.%20Can%20you%20share%20your%20charges%20and%20how%20we%20can%20proceed%3F">
                   <i class="fab fa-whatsapp"></i>
                   <span>
                     <strong>WhatsApp</strong>
@@ -1086,9 +1129,12 @@
             <article class="module contact-form">
               <form id="contactForm">
                 <div class="form-grid">
-                  <input class="field" type="text" name="name" placeholder="Your Name" required>
-                  <input class="field" type="email" name="email" placeholder="Your Email" required>
-                  <textarea class="field" name="message" placeholder="Describe your project..." required></textarea>
+                  <label class="sr" for="fName">Your name</label>
+                  <input class="field" id="fName" type="text" name="name" placeholder="Your Name" autocomplete="name" required>
+                  <label class="sr" for="fEmail">Your email</label>
+                  <input class="field" id="fEmail" type="email" name="email" placeholder="Your Email" autocomplete="email" required>
+                  <label class="sr" for="fMsg">Project description</label>
+                  <textarea class="field" id="fMsg" name="message" placeholder="Describe your project..." required></textarea>
                 </div>
                 <button class="btn primary" type="submit">Send Project Details <i class="fas fa-arrow-right"></i>
                 </button>
@@ -1111,47 +1157,77 @@
     </div>
     <script>
       const body = document.body,
-        themeToggle = document.getElementById('themeToggle'),
         themeIcon = document.getElementById('themeIcon');
 
-      function setTheme(theme) {
-        body.classList.toggle('light-mode', theme === 'light');
-        localStorage.setItem('jugajug-theme', theme);
-        themeIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
-        document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'light' ? '#ffffff' : '#0b1020')
+      function setTheme(t) {
+        body.classList.toggle('light-mode', t === 'light');
+        try {
+          localStorage.setItem('jugajug-theme', t)
+        } catch (e) {}
+        themeIcon.className = t === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', t === 'light' ? '#ffffff' : '#0b1020')
       }
-      const saved = localStorage.getItem('jugajug-theme');
+      let saved = null;
+      try {
+        saved = localStorage.getItem('jugajug-theme')
+      } catch (e) {}
       setTheme(saved === 'light' ? 'light' : 'dark');
-      themeToggle.addEventListener('click', () => setTheme(body.classList.contains('light-mode') ? 'dark' : 'light'));
-      document.querySelectorAll('[data-expand]').forEach(card => card.addEventListener('click', () => {
+      document.getElementById('themeToggle').addEventListener('click', () => setTheme(body.classList.contains('light-mode') ? 'dark' : 'light'));
+
+      function toggleCard(card) {
         document.querySelectorAll('[data-expand].open').forEach(x => {
-          if (x !== card) x.classList.remove('open')
+          if (x !== card) {
+            x.classList.remove('open');
+            x.setAttribute('aria-expanded', 'false')
+          }
         });
-        card.classList.toggle('open')
-      }));
+        const open = card.classList.toggle('open');
+        card.setAttribute('aria-expanded', open)
+      }
+      document.querySelectorAll('[data-expand]').forEach(c => {
+        c.addEventListener('click', () => toggleCard(c));
+        c.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleCard(c)
+          }
+        })
+      });
       const sections = [...document.querySelectorAll('main section[id]')],
         links = [...document.querySelectorAll('.nav-link')];
-      const observer = new IntersectionObserver(entries => entries.forEach(e => {
-        if (e.isIntersecting) {
-          links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id))
+
+      function spy() {
+        let id = sections[0].id;
+        if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) {
+          id = sections[sections.length - 1].id
+        } else {
+          sections.forEach(s => {
+            if (s.getBoundingClientRect().top <= innerHeight * .4) id = s.id
+          })
         }
-      }), {
-        rootMargin: '-35% 0px -55%'
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id))
+      }
+      addEventListener('scroll', spy, {
+        passive: true
       });
-      sections.forEach(s => observer.observe(s));
+      addEventListener('resize', spy);
+      spy();
       document.getElementById('year').textContent = new Date().getFullYear();
       const popup = document.getElementById('popup');
       document.getElementById('popupClose').onclick = () => popup.classList.remove('show');
       popup.addEventListener('click', e => {
         if (e.target === popup) popup.classList.remove('show')
       });
+      addEventListener('keydown', e => {
+        if (e.key === 'Escape') popup.classList.remove('show')
+      });
       document.getElementById('contactForm').addEventListener('submit', async e => {
         e.preventDefault();
-        const form = e.currentTarget,
+        const f = e.currentTarget,
           data = {
-            name: form.name.value,
-            email: form.email.value,
-            message: form.message.value
+            name: f.name.value,
+            email: f.email.value,
+            message: f.message.value
           };
         try {
           const r = await fetch('https://formspree.io/f/mjgennvk', {
@@ -1163,7 +1239,7 @@
             body: JSON.stringify(data)
           });
           if (r.ok) {
-            form.reset();
+            f.reset();
             popup.classList.add('show')
           } else alert('Something went wrong. Please try again.')
         } catch (err) {
